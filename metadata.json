@@ -1,0 +1,6 @@
+{
+  "name": "44-Maktab Zakovat Klubi",
+  "description": "44-sonli umumiy o'rta ta'lim maktabi Zakovat intellektual klubining rasmiy axborot va o'yin portali. Turnirlar, jamoalar reytingi, bilimdonlar, savollar bazasi va live quiz.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
