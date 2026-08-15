@@ -126,11 +126,27 @@ export default function App() {
   const [schoolInfo, setSchoolInfo] = useState<SchoolInfo>(() => {
     try {
       const saved = localStorage.getItem('zakovat44_school_info');
-      return saved ? JSON.parse(saved) : INITIAL_SCHOOL_INFO;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Clean up legacy teleoyin announcement if saved in browser storage
+        if (parsed.headerAnnouncement && (parsed.headerAnnouncement.includes("teleo'yin") || parsed.headerAnnouncement.includes("teleoyin"))) {
+          parsed.headerAnnouncement = '';
+          parsed.headerAnnouncementLink = '';
+        }
+        return { ...INITIAL_SCHOOL_INFO, ...parsed };
+      }
+      return INITIAL_SCHOOL_INFO;
     } catch {
       return INITIAL_SCHOOL_INFO;
     }
   });
+
+  // Dynamic Browser Tab Title
+  React.useEffect(() => {
+    const schoolNum = schoolInfo?.schoolNumber || '44';
+    const club = schoolInfo?.clubName || 'Zakovat Intellektual Klubi';
+    document.title = `${schoolNum}-Maktab ${club} | Rasmiy Portal`;
+  }, [schoolInfo]);
 
   // Admin / Coordinator Authentication State
   const [adminCredentials, setAdminCredentials] = useState(() => {
