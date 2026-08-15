@@ -52,9 +52,11 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const contactEmail = schoolInfo?.email || 'malumot@zakovat.tv';
-  const contactPhone = schoolInfo?.phone || '+998 (95) 145 09 19';
-  const headerAnnouncement = schoolInfo?.headerAnnouncement || '"Zakovat" teleo\'yiniga savol yuborish';
-  const headerLink = schoolInfo?.headerAnnouncementLink || (schoolInfo?.telegramChannel ? `https://t.me/${schoolInfo.telegramChannel.replace('@', '')}` : 'https://t.me/zakovat');
+  const contactPhone = schoolInfo?.phone || '+998 (95) 145-09-19';
+  const telegramHandle = schoolInfo?.telegramChannel || '@zakovat44_maktab';
+  const telegramUrl = telegramHandle ? (telegramHandle.startsWith('http') ? telegramHandle : `https://t.me/${telegramHandle.replace('@', '')}`) : '';
+  const headerAnnouncement = schoolInfo?.headerAnnouncement || '';
+  const headerLink = schoolInfo?.headerAnnouncementLink || telegramUrl;
   const schoolNum = schoolInfo?.schoolNumber || '44';
   const clubTitle = schoolInfo?.clubName || 'ZAKOVAT KLUBI';
 
@@ -82,24 +84,46 @@ export const Header: React.FC<HeaderProps> = ({
           
           {/* Left contact info */}
           <div className="flex flex-wrap items-center gap-4 text-amber-200/70">
-            <a href={`mailto:${contactEmail}`} className="hover:text-amber-400 flex items-center gap-1 transition-colors">
-              <Mail className="w-3 h-3 text-amber-400" />
-              <span>{contactEmail}</span>
-            </a>
-            <a href={`tel:${contactPhone.replace(/[^0-9+]/g, '')}`} className="hover:text-amber-400 flex items-center gap-1 transition-colors">
-              <Phone className="w-3 h-3 text-amber-400" />
-              <span>{contactPhone}</span>
-            </a>
-            <span className="hidden md:inline-block text-amber-900/60">|</span>
-            <a 
-              href={headerLink} 
-              target="_blank" 
-              rel="noreferrer"
-              className="hidden md:inline-flex items-center gap-1 text-amber-300 hover:text-amber-200 font-medium transition-colors cursor-pointer"
-            >
-              <Send className="w-3 h-3" />
-              <span>{headerAnnouncement}</span>
-            </a>
+            {contactEmail && (
+              <a href={`mailto:${contactEmail}`} className="hover:text-amber-400 flex items-center gap-1 transition-colors">
+                <Mail className="w-3 h-3 text-amber-400" />
+                <span>{contactEmail}</span>
+              </a>
+            )}
+            {contactPhone && (
+              <a href={`tel:${contactPhone.replace(/[^0-9+]/g, '')}`} className="hover:text-amber-400 flex items-center gap-1 transition-colors">
+                <Phone className="w-3 h-3 text-amber-400" />
+                <span>{contactPhone}</span>
+              </a>
+            )}
+            {telegramUrl && (
+              <>
+                <span className="hidden md:inline-block text-amber-900/60">|</span>
+                <a 
+                  href={telegramUrl} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="hidden md:inline-flex items-center gap-1 text-sky-400 hover:text-sky-300 font-medium transition-colors cursor-pointer"
+                >
+                  <Send className="w-3 h-3 text-sky-400" />
+                  <span>{telegramHandle}</span>
+                </a>
+              </>
+            )}
+            {headerAnnouncement && (
+              <>
+                <span className="hidden md:inline-block text-amber-900/60">|</span>
+                <a 
+                  href={headerLink || '#'} 
+                  target={headerLink?.startsWith('http') ? '_blank' : '_self'} 
+                  rel="noreferrer"
+                  className="hidden md:inline-flex items-center gap-1 text-amber-300 hover:text-amber-200 font-medium transition-colors cursor-pointer"
+                >
+                  <Sparkles className="w-3 h-3 text-amber-400" />
+                  <span>{headerAnnouncement}</span>
+                </a>
+              </>
+            )}
           </div>
 
           {/* Right quick links */}

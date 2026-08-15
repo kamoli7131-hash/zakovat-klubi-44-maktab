@@ -294,8 +294,8 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
             className="p-3 bg-[#18120d] border border-amber-500/25 hover:border-amber-400/60 rounded-xl text-left transition-all hover:-translate-y-0.5 cursor-pointer group"
           >
             <School className="w-5 h-5 text-amber-400 mb-1.5 group-hover:scale-110 transition-transform" />
-            <div className="text-xs font-bold text-amber-100">Maktab va FAQ Sozlash</div>
-            <div className="text-[10px] text-amber-200/60">Tarix, qoidalar, savol-javob</div>
+            <div className="text-xs font-bold text-amber-100">Header, Footer & Maktab</div>
+            <div className="text-[10px] text-amber-200/60">Sarlavha, footer va kontaktlar</div>
           </button>
         </div>
       </div>

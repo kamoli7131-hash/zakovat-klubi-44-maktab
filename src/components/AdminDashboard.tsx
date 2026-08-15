@@ -163,7 +163,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     { id: 'questions', label: 'Viktorina Savollari', icon: HelpCircle, badge: questions.length },
     { id: 'news', label: "Yangiliklar va E'lonlar", icon: Newspaper, badge: news.length },
     { id: 'gallery', label: 'Fotogalereya', icon: ImageIcon, badge: gallery.length },
-    { id: 'school-info', label: 'Maktab va FAQ', icon: School },
+    { id: 'school-info', label: 'Header, Footer & Maktab', icon: School },
     { id: 'applications', label: 'Jamoa Arizalari', icon: CheckCircle2, badge: pendingCount > 0 ? pendingCount : undefined },
     { id: 'settings', label: 'Sozlamalar & Backup', icon: Settings }
   ];
